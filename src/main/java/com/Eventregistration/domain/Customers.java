@@ -1,24 +1,21 @@
 package com.Eventregistration.domain;
 
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
-import javax.persistence.Table;
 
-@Entity
-@Table(name="CUSTOMERS")
-public class Customer {
+public class Customers {
 
-	@Id
-	@GeneratedValue(strategy=GenerationType.IDENTITY)
-	long id;
+	private long id;
+	private String name;
+	private String password;
+	private String email;
 	
-	@Column(name="CUSTOMER_NAME")
-	String name;
-	String password;
-	
+	public Customers(long id, String name, String password, String email) {
+		super();
+		this.id = id;
+		this.name = name;
+		this.password = password;
+		this.email = email;
+	}
+
 	public String getPassword() {
 		return password;
 	}
@@ -26,8 +23,6 @@ public class Customer {
 	public void setPassword(String password) {
 		this.password = password;
 	}
-
-	String email;
 
 	public long getId() {
 		return id;

@@ -2,10 +2,10 @@ package com.Eventregistration.service;
 
 import java.util.Optional;
 
-import com.Eventregistration.domain.Customer;
+import com.Eventregistration.domain.Customers;
 
 public interface CustomerService {
-	public void saveCustomer(Customer customer);
-	public Iterable<Customer> findAllCustomers();
-	public Optional<Customer> findCustomerById(long id);	
+//	public void saveCustomer(Customers customer);
+	public Iterable<Customers> findAllCustomers();
+	public Customers findCustomerById(long id);	
 }

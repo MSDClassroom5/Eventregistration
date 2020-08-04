@@ -5,7 +5,7 @@ import java.util.Optional;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import com.Eventregistration.domain.Customer;
+import com.Eventregistration.domain.Customers;
 import com.Eventregistration.repository.CustomersRepository;
 
 @Service
@@ -14,17 +14,17 @@ public class CustomerServiceImpl implements CustomerService {
 	private CustomersRepository repo;
 
 
-	public void saveCustomer(Customer customer) {
-		repo.save(customer);
-	}
+//	public void saveCustomer(Customers customer) {
+//		repo.save(customer);
+//	}
 
 
-	public Iterable<Customer> findAllCustomers() {
+	public Iterable<Customers> findAllCustomers() {
 		return repo.findAll();
 	}
 
 
-	public Optional<Customer> findCustomerById(long id) {
+	public Customers findCustomerById(long id) {
 		return repo.findById(id);
 	}
 }
