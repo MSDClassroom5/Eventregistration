@@ -10,10 +10,10 @@ public class Events {
 		this.description = description;
 	}
 	
-	long id;
-	String code;
-	String title;
-	String description;
+	private long id;
+	private String code;
+	private String title;
+	private String description;
 	public long getId() {
 		return id;
 	}
