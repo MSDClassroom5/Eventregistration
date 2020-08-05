@@ -19,9 +19,9 @@ public class InMemoryEventsRepository implements EventsRepository {
 	private List<Events> eventData = new ArrayList<>(Arrays.asList(
 			new Events(1L, "E1", "Weekly Meeting", "Weekly meeting #1"),
 			new Events(2L, "E2", "Sales Meeting", "Sales meeting FY2020"),
-			new Events(2L, "E2", "Fun Meeting", "Happy Happy Meeting"),
-			new Events(2L, "E2", "Covid Meeting", "Trash Fire FY2020"),
-			new Events(2L, "E2", "Advertising Meeting", "Social Media Meeting")));
+			new Events(3L, "E2", "Fun Meeting", "Happy Happy Meeting"),
+			new Events(4L, "E2", "Covid Meeting", "Trash Fire FY2020"),
+			new Events(5L, "E2", "Advertising Meeting", "Social Media Meeting")));
 
 
 	@Override
