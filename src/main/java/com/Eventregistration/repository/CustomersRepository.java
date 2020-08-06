@@ -10,4 +10,5 @@ public interface CustomersRepository {
 
 	public Customers findById(Long id);
 	
+	public Collection<Customers> findByName(String name);
 }

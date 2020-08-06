@@ -6,6 +6,7 @@ import java.util.Collection;
 import java.util.Collections;
 import java.util.List;
 import java.util.Optional;
+import java.util.stream.Collectors;
 
 import org.springframework.stereotype.Component;
 
@@ -36,12 +37,12 @@ public class InMemoryCustomersRepository implements CustomersRepository {
 	public Collection<Customers> findAll() {
 		return Collections.unmodifiableCollection(accountData);
 	}
-//
-//	@Override
-//	public Collection<StockAccount> findByName(String name) {
-//		return accountData.stream().filter(account -> account.getName().toLowerCase().equals(name.toLowerCase()))
-//				.collect(Collectors.toList());
-//	}
+
+	@Override
+	public Collection<Customers> findByName(String name) {
+		return accountData.stream().filter(customer -> customer.getName().toLowerCase().equals(name.toLowerCase()))
+				.collect(Collectors.toList());
+	}
 //
 //	@Override
 //	public long count() {

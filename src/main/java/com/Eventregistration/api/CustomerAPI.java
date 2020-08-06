@@ -1,6 +1,7 @@
 package com.Eventregistration.api;
 
 import java.net.URI;
+import java.util.Collection;
 import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -34,7 +35,12 @@ public class CustomerAPI {
 	public Customers getCustomerById(@PathVariable("customerId") long id){
 		return repo.findById(id);
 	}
-	
+
+	@GetMapping("/byname/{name}")
+	public Iterable<Customers> findAllCusomtersByName(@PathVariable("name") String name){
+		
+		return repo.findByName(name);
+	}
 //	@PostMapping
 //	public ResponseEntity<?> addCustomer(@RequestBody Customers newCustomer, UriComponentsBuilder uri){
 //		if (newCustomer.getId() !=0 || newCustomer.getName() == null || newCustomer.getEmail() == null) {
