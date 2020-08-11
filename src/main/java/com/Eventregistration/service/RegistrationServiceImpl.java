@@ -1,5 +1,7 @@
 package com.Eventregistration.service;
 
+import java.util.Optional;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -22,7 +24,7 @@ public class RegistrationServiceImpl implements RegistrationService {
 	}
 
 
-	public Registration findRegistrationById(long id) {
+	public Optional<Registration> findRegistrationById(long id) {
 		return repo.findById(id);
 	}
 }

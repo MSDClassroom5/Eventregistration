@@ -1,5 +1,7 @@
 package com.Eventregistration.api;
 
+import java.util.Optional;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -8,22 +10,23 @@ import org.springframework.web.bind.annotation.RestController;
 
 import com.Eventregistration.domain.Registration;
 import com.Eventregistration.repository.RegistrationsRepository;
+import com.Eventregistration.service.RegistrationService;
 
 @RestController
 @RequestMapping("/registrations")
 public class RegistrationAPI {
 	
 	@Autowired
-	RegistrationsRepository repo;
+	RegistrationService registrationService;
 	
 	@GetMapping
 	public Iterable<Registration> getAll() {
-		return repo.findAll();
+		return registrationService.findAllRegistrations();
 	}
 
 	@GetMapping("/{id}")
-	public Registration getCustomerById(@PathVariable("id") long id){
-		return repo.findById(id);
+	public Optional<Registration> getCustomerById(@PathVariable("id") long id){
+		return registrationService.findRegistrationById(id);
 	}
 	
 //	@PostMapping
