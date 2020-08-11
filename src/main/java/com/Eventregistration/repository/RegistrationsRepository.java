@@ -2,12 +2,12 @@ package com.Eventregistration.repository;
 
 import java.util.Collection;
 
-import com.Eventregistration.domain.Registrations;
+import com.Eventregistration.domain.Registration;
 
 public interface RegistrationsRepository {
 
-	public Collection<Registrations> findAll();
+	public Collection<Registration> findAll();
 
-	public Registrations findById(Long id);
+	public Registration findById(Long id);
 	
 }

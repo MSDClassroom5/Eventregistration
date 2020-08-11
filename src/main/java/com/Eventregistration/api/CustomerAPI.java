@@ -16,7 +16,7 @@ import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
 import org.springframework.web.util.UriComponentsBuilder;
 
-import com.Eventregistration.domain.Customers;
+import com.Eventregistration.domain.Customer;
 import com.Eventregistration.repository.CustomersRepository;
 
 @RestController
@@ -27,38 +27,39 @@ public class CustomerAPI {
 	CustomersRepository repo;
 	
 	@GetMapping
-	public Iterable<Customers> getAll() {
+	public Iterable<Customer> getAll() {
 		return repo.findAll();
 	}
 
 	@GetMapping("/{customerId}")
-	public Customers getCustomerById(@PathVariable("customerId") long id){
+	public Optional<Customer> getCustomerById(@PathVariable("customerId") long id){
 		return repo.findById(id);
 	}
 
 	@GetMapping("/byname/{name}")
-	public Iterable<Customers> findAllCusomtersByName(@PathVariable("name") String name){
-		
-		return repo.findByName(name);
+	public Optional<Customer> getCustomerByName(@PathVariable("name") String name){
+		return repo.findById((long)0);
+//		return repo.findByName(name);
 	}
-//	@PostMapping
-//	public ResponseEntity<?> addCustomer(@RequestBody Customers newCustomer, UriComponentsBuilder uri){
-//		if (newCustomer.getId() !=0 || newCustomer.getName() == null || newCustomer.getEmail() == null) {
-//			return ResponseEntity.badRequest().build();			
-//		}
-//		newCustomer = repo.save(newCustomer);
-//		URI location=ServletUriComponentsBuilder.fromCurrentRequest().path("/{id}").buildAndExpand(newCustomer.getId()).toUri();
-//		ResponseEntity<?> response=ResponseEntity.created(location).build();
-//		return response;
-//	}
-//
-//	@PutMapping("/{customerId}")
-//	public ResponseEntity<?> putCustomer(@RequestBody Customers newCustomer, @PathVariable("customerId") long customerId){
-//		if (newCustomer.getId() != customerId || newCustomer.getName() == null || newCustomer.getEmail() == null) {
-//			return ResponseEntity.badRequest().build();			
-//		}
-//		newCustomer = repo.save(newCustomer);
-//		return ResponseEntity.ok().build();
-//	}
+	
+	@PostMapping
+	public ResponseEntity<?> addCustomer(@RequestBody Customer newCustomer, UriComponentsBuilder uri){
+		if (newCustomer.getId() !=0 || newCustomer.getName() == null || newCustomer.getEmail() == null) {
+			return ResponseEntity.badRequest().build();			
+		}
+		newCustomer = repo.save(newCustomer);
+		URI location=ServletUriComponentsBuilder.fromCurrentRequest().path("/{id}").buildAndExpand(newCustomer.getId()).toUri();
+		ResponseEntity<?> response=ResponseEntity.created(location).build();
+		return response;
+	}
+
+	@PutMapping("/{customerId}")
+	public ResponseEntity<?> putCustomer(@RequestBody Customer newCustomer, @PathVariable("customerId") long customerId){
+		if (newCustomer.getId() != customerId || newCustomer.getName() == null || newCustomer.getEmail() == null) {
+			return ResponseEntity.badRequest().build();			
+		}
+		newCustomer = repo.save(newCustomer);
+		return ResponseEntity.ok().build();
+	}
 	
 }

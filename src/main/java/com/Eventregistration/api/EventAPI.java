@@ -15,7 +15,7 @@ import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
 import org.springframework.web.util.UriComponentsBuilder;
 
-import com.Eventregistration.domain.Events;
+import com.Eventregistration.domain.Event;
 import com.Eventregistration.repository.EventsRepository;
 
 @RestController
@@ -26,12 +26,12 @@ public class EventAPI {
 	EventsRepository repo;
 	
 	@GetMapping
-	public Iterable<Events> getAll() {
+	public Iterable<Event> getAll() {
 		return repo.findAll();
 	}
 
 	@GetMapping("/{eventId}")
-	public Events getEventById(@PathVariable("eventId") long id){
+	public Event getEventById(@PathVariable("eventId") long id){
 		return repo.findById(id);
 	}
 	

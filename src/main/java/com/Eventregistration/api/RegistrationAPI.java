@@ -6,7 +6,7 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.Eventregistration.domain.Registrations;
+import com.Eventregistration.domain.Registration;
 import com.Eventregistration.repository.RegistrationsRepository;
 
 @RestController
@@ -17,12 +17,12 @@ public class RegistrationAPI {
 	RegistrationsRepository repo;
 	
 	@GetMapping
-	public Iterable<Registrations> getAll() {
+	public Iterable<Registration> getAll() {
 		return repo.findAll();
 	}
 
 	@GetMapping("/{id}")
-	public Registrations getCustomerById(@PathVariable("id") long id){
+	public Registration getCustomerById(@PathVariable("id") long id){
 		return repo.findById(id);
 	}
 	

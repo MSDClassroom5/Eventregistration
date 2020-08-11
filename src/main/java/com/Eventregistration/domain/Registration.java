@@ -2,14 +2,14 @@ package com.Eventregistration.domain;
 
 import java.util.Date;
 
-public class Registrations {
+public class Registration {
 
 		long id;
 		long event_id;
 		long customer_id;
 		Date registration_date;
 		String notes;
-		public Registrations(long id, long event_id, long customer_id, Date registration_date, String notes) {
+		public Registration(long id, long event_id, long customer_id, Date registration_date, String notes) {
 			super();
 			this.id = id;
 			this.event_id = event_id;

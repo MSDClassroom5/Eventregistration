@@ -1,8 +1,8 @@
 package com.Eventregistration.domain;
 
-public class Events {
+public class Event {
 
-	public Events(long id, String code, String title, String description) {
+	public Event(long id, String code, String title, String description) {
 		super();
 		this.id = id;
 		this.code = code;
