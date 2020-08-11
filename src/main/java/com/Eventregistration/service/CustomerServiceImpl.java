@@ -27,6 +27,18 @@ public class CustomerServiceImpl implements CustomerService {
 	public Optional<Customer> findCustomerById(long id) {
 		return repo.findById(id);
 	}
+	
+	public Optional<Customer> findCustomerByName(String name){
+		//
+		return null;
+	}
+
+	public void deleteCustomerById(long id){
+		repo.deleteById(id);
+	}
+	
+	
+	
 }
 
 
