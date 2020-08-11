@@ -16,7 +16,7 @@ import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
 import org.springframework.web.util.UriComponentsBuilder;
 
-import com.Eventregistration.domain.Customers;
+import com.Eventregistration.domain.Customer;
 import com.Eventregistration.repository.CustomersRepository;
 
 @RestController
@@ -27,17 +27,17 @@ public class CustomerAPI {
 	CustomersRepository repo;
 	
 	@GetMapping
-	public Iterable<Customers> getAll() {
+	public Iterable<Customer> getAll() {
 		return repo.findAll();
 	}
 
 	@GetMapping("/{customerId}")
-	public Customers getCustomerById(@PathVariable("customerId") long id){
+	public Customer getCustomerById(@PathVariable("customerId") long id){
 		return repo.findById(id);
 	}
 
 	@GetMapping("/byname/{name}")
-	public Iterable<Customers> findAllCusomtersByName(@PathVariable("name") String name){
+	public Iterable<Customer> findAllCusomtersByName(@PathVariable("name") String name){
 		
 		return repo.findByName(name);
 	}

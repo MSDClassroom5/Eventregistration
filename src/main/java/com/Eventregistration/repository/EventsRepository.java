@@ -2,10 +2,10 @@ package com.Eventregistration.repository;
 
 import java.util.Collection;
 
-import com.Eventregistration.domain.Events;
+import com.Eventregistration.domain.Event;
 
 public interface EventsRepository {
-	public Collection<Events> findAll();
+	public Collection<Event> findAll();
 
-	public Events findById(Long id);
+	public Event findById(Long id);
 }

@@ -8,38 +8,38 @@ import java.util.List;
 import java.util.Optional;
 import java.util.stream.Collectors;
 
-import org.springframework.stereotype.Component;
+import org.springframework.stereotype.Repository;
 
-import com.Eventregistration.domain.Customers;
+import com.Eventregistration.domain.Customer;
 
-@Component
+@Repository
 public class InMemoryCustomersRepository implements CustomersRepository {
 
 	/** This is simply to eliminate the need to provide an in-memory database! */
-	private List<Customers> accountData = new ArrayList<>(Arrays.asList(
-			new Customers(1L, "John", "password", "John@email.com"),
-			new Customers(2L, "Linda", "password", "Linda@email.com"), 
-			new Customers(3L, "Jose", "password", "Jose@email.com"),
-			new Customers(4L, "Teresa", "password", "Teresa@email.com"), 
-			new Customers(5L, "Bill", "password", "Bill@email.com")));
+	private List<Customer> accountData = new ArrayList<>(Arrays.asList(
+			new Customer(1L, "John", "password", "John@email.com"),
+			new Customer(2L, "Linda", "password", "Linda@email.com"), 
+			new Customer(3L, "Jose", "password", "Jose@email.com"),
+			new Customer(4L, "Teresa", "password", "Teresa@email.com"), 
+			new Customer(5L, "Bill", "password", "Bill@email.com")));
 
 
 	@Override
-	public Customers findById(Long id) {
+	public Customer findById(Long id) {
 		// Uses Java 8 Streams, and filters with a lambda that matches on id value.
-		Optional<Customers> customerOptional = accountData.stream().filter(customer -> customer.getId() == (id))
+		Optional<Customer> customerOptional = accountData.stream().filter(customer -> customer.getId() == (id))
 				.findAny();
 
 		return customerOptional.orElse(null); // Returns item if found, else returns null
 	}
 
 	@Override
-	public Collection<Customers> findAll() {
+	public Collection<Customer> findAll() {
 		return Collections.unmodifiableCollection(accountData);
 	}
 
 	@Override
-	public Collection<Customers> findByName(String name) {
+	public Collection<Customer> findByName(String name) {
 		return accountData.stream().filter(customer -> customer.getName().toLowerCase().equals(name.toLowerCase()))
 				.collect(Collectors.toList());
 	}

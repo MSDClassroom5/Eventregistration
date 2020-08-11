@@ -2,13 +2,13 @@ package com.Eventregistration.repository;
 
 import java.util.Collection;
 
-import com.Eventregistration.domain.Customers;
+import com.Eventregistration.domain.Customer;
 
 public interface CustomersRepository {
 
-	public Collection<Customers> findAll();
+	public Collection<Customer> findAll();
 
-	public Customers findById(Long id);
+	public Customer findById(Long id);
 	
-	public Collection<Customers> findByName(String name);
+	public Collection<Customer> findByName(String name);
 }

@@ -1,14 +1,14 @@
 package com.Eventregistration.domain;
 
 
-public class Customers {
+public class Customer {
 
 	private long id;
 	private String name;
 	private String password;
 	private String email;
 	
-	public Customers(long id, String name, String password, String email) {
+	public Customer(long id, String name, String password, String email) {
 		super();
 		this.id = id;
 		this.name = name;
