@@ -11,4 +11,6 @@ public interface CustomersRepository extends CrudRepository<Customer, Long> {
 //	public Customers findById(Long id);
 //	
 //	public Collection<Customers> findByName(String name);
+	
+	Customer findByNameIgnoreCase(String name);
 }
