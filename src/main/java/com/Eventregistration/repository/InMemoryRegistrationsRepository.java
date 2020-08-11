@@ -8,11 +8,11 @@ import java.util.Date;
 import java.util.List;
 import java.util.Optional;
 
-import org.springframework.stereotype.Component;
+import org.springframework.stereotype.Repository;
 
 import com.Eventregistration.domain.Registration;
 
-@Component
+@Repository
 public class InMemoryRegistrationsRepository implements RegistrationsRepository {
 
 	/** This is simply to eliminate the need to provide an in-memory database! */

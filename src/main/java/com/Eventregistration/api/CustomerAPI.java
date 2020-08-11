@@ -33,6 +33,7 @@ public class CustomerAPI {
 
 	@GetMapping("/{customerId}")
 	public Optional<Customer> getCustomerById(@PathVariable("customerId") long id){
+
 		return repo.findById(id);
 	}
 
@@ -40,6 +41,7 @@ public class CustomerAPI {
 	public Optional<Customer> getCustomerByName(@PathVariable("name") String name){
 		return repo.findById((long)0);
 //		return repo.findByName(name);
+
 	}
 	
 	@PostMapping

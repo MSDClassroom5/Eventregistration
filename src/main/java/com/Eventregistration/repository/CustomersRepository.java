@@ -5,7 +5,6 @@ import org.springframework.data.repository.CrudRepository;
 import com.Eventregistration.domain.Customer;
 
 public interface CustomersRepository extends CrudRepository<Customer, Long> {
-//public interface CustomersRepository {
 
 //	public Collection<Customers> findAll();
 //

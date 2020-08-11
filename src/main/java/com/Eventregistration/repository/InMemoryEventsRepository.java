@@ -7,12 +7,12 @@ import java.util.Collections;
 import java.util.List;
 import java.util.Optional;
 
-import org.springframework.stereotype.Component;
+import org.springframework.stereotype.Repository;
 
 import com.Eventregistration.domain.Customer;
 import com.Eventregistration.domain.Event;
 
-@Component
+@Repository
 public class InMemoryEventsRepository implements EventsRepository {
 
 	/** This is simply to eliminate the need to provide an in-memory database! */
