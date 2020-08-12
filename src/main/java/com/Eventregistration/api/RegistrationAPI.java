@@ -2,7 +2,9 @@ package com.Eventregistration.api;
 
 import java.util.Optional;
 
+import org.apache.catalina.connector.Response;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -25,8 +27,13 @@ public class RegistrationAPI {
 	}
 
 	@GetMapping("/{id}")
-	public Optional<Registration> getCustomerById(@PathVariable("id") long id){
-		return registrationService.findRegistrationById(id);
+	public ResponseEntity<Registration> getCustomerById(@PathVariable("id") long id){
+		Optional<Registration> registration = registrationService.findRegistrationById(id);
+		if (registration.isPresent()) {
+			return ResponseEntity.ok(registration.get());
+		} else {
+			return ResponseEntity.notFound().build();
+		}
 	}
 	
 //	@PostMapping
