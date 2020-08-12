@@ -11,7 +11,6 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.Eventregistration.domain.Registration;
-import com.Eventregistration.repository.RegistrationsRepository;
 import com.Eventregistration.service.RegistrationService;
 
 @RestController
