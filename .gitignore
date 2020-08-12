@@ -33,3 +33,4 @@ out/
 ### VS Code ###
 .vscode/
 /bin/
+/prj-cust-client-initial alias
