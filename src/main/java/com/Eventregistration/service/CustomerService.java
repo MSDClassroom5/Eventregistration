@@ -10,6 +10,4 @@ public interface CustomerService {
 	public Optional<Customer> findCustomerById(long id);
 	public Optional<Customer> findCustomerByName(String name);
 	public void deleteCustomerById(long id);
-	
-	
 }

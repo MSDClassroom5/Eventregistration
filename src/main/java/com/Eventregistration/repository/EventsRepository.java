@@ -1,11 +1,8 @@
 package com.Eventregistration.repository;
 
-import java.util.Collection;
+import org.springframework.data.repository.CrudRepository;
 
 import com.Eventregistration.domain.Event;
 
-public interface EventsRepository {
-	public Collection<Event> findAll();
-
-	public Event findById(Long id);
+public interface EventsRepository extends CrudRepository<Event, Long>  {
 }

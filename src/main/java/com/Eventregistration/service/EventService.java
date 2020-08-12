@@ -5,7 +5,8 @@ import java.util.Optional;
 import com.Eventregistration.domain.Event;
 
 public interface EventService {
-//	public void saveEvent(Events event);
+	public void saveEvent(Event event);
 	public Iterable<Event> findAllEvents();
-	public Event findEventById(long id);	
+	public Optional<Event> findEventById(long id);	
+	public void deleteEventById(long id);
 }

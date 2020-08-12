@@ -1,19 +1,22 @@
 package com.Eventregistration.domain;
 
-public class Event {
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.persistence.Table;
 
-	public Event(long id, String code, String title, String description) {
-		super();
-		this.id = id;
-		this.code = code;
-		this.title = title;
-		this.description = description;
-	}
+@Entity
+@Table(name="EVENTS")
+public class Event {
 	
+	@Id
+	@GeneratedValue(strategy=GenerationType.IDENTITY)	
 	private long id;
 	private String code;
 	private String title;
 	private String description;
+	
 	public long getId() {
 		return id;
 	}

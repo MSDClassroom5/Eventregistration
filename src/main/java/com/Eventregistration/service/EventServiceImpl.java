@@ -14,18 +14,20 @@ public class EventServiceImpl implements EventService {
 	private EventsRepository repo;
 
 
-//	public void saveEvent(Events event) {
-//		repo.save(event);
-//	}
-
+	public void saveEvent(Event event) {
+		repo.save(event);
+	}
 
 	public Iterable<Event> findAllEvents() {
 		return repo.findAll();
 	}
 
-
-	public Event findEventById(long id) {
+	public Optional<Event> findEventById(long id) {
 		return repo.findById(id);
+	}
+	
+	public void deleteEventById(long id){
+		repo.deleteById(id);
 	}
 }
 
