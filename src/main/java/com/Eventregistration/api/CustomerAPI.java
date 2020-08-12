@@ -53,7 +53,7 @@ public class CustomerAPI {
 	
 	@PostMapping
 	public ResponseEntity<?> addCustomer(@RequestBody Customer newCustomer, UriComponentsBuilder uri){
-		if (newCustomer.getId() !=0 || newCustomer.getName() == null || newCustomer.getEmail() == null) {
+		if (newCustomer.getId() !=0 || newCustomer.getName() == null || newCustomer.getEmail() == null || newCustomer.getPassword() == null) {
 			return ResponseEntity.badRequest().build();			
 		}
 		customerService.saveCustomer(newCustomer);
@@ -64,7 +64,7 @@ public class CustomerAPI {
 
 	@PutMapping("/{customerId}")
 	public ResponseEntity<?> putCustomer(@RequestBody Customer newCustomer, @PathVariable("customerId") long customerId){
-		if (newCustomer.getId() != customerId || newCustomer.getName() == null || newCustomer.getEmail() == null) {
+		if (newCustomer.getId() != customerId || newCustomer.getName() == null || newCustomer.getEmail() == null || newCustomer.getPassword() == null) {
 			return ResponseEntity.badRequest().build();			
 		}
 		customerService.saveCustomer(newCustomer);		
