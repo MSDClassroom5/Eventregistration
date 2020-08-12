@@ -17,7 +17,6 @@ import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
 import org.springframework.web.util.UriComponentsBuilder;
 
 import com.Eventregistration.domain.Customer;
-import com.Eventregistration.repository.CustomersRepository;
 import com.Eventregistration.service.CustomerService;
 
 @RestController
@@ -33,15 +32,23 @@ public class CustomerAPI {
 	}
 
 	@GetMapping("/{customerId}")
-	public Optional<Customer> getCustomerById(@PathVariable("customerId") long id){
+	public ResponseEntity<Customer> getCustomerById(@PathVariable("customerId") long id){
 		Optional<Customer> customer = customerService.findCustomerById(id);
-		return customer;
+		if (customer.isPresent()) {
+			return ResponseEntity.ok(customer.get());
+		} else {
+			return ResponseEntity.notFound().build();
+		}
 	}
 
 	@GetMapping("/byname/{name}")
-	public Optional<Customer> getCustomerByName(@PathVariable("name") String name){
-		Optional<Customer> customer = customerService.findCustomerByName(name);
-		return customer;
+	public ResponseEntity<Customer> getCustomerByName(@PathVariable("name") String name){
+		Customer customer = customerService.findCustomerByName(name);
+		if (customer == null) {
+			return ResponseEntity.notFound().build();
+		} else {
+			return ResponseEntity.ok(customer);
+		}
 	}
 	
 	@PostMapping

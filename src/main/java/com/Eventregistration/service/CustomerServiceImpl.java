@@ -28,9 +28,9 @@ public class CustomerServiceImpl implements CustomerService {
 		return repo.findById(id);
 	}
 	
-	public Optional<Customer> findCustomerByName(String name){
-		//
-		return null;
+	@Override
+	public Customer findCustomerByName(String name) {
+		return repo.findByNameIgnoreCase(name);
 	}
 
 	public void deleteCustomerById(long id){

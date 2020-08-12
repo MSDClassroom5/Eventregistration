@@ -1,13 +1,13 @@
 package com.Eventregistration.repository;
 
-import java.util.Collection;
+import org.springframework.data.repository.CrudRepository;
 
 import com.Eventregistration.domain.Registration;
 
-public interface RegistrationsRepository {
+public interface RegistrationsRepository extends CrudRepository<Registration, Long> {
 
-	public Collection<Registration> findAll();
-
-	public Registration findById(Long id);
+//	public Collection<Registration> findAll();
+//
+//	public Registration findById(Long id);
 	
 }
