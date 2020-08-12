@@ -16,7 +16,6 @@ import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
 import org.springframework.web.util.UriComponentsBuilder;
 
-import com.Eventregistration.domain.Customer;
 import com.Eventregistration.domain.Event;
 import com.Eventregistration.service.EventService;
 

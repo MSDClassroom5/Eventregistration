@@ -13,19 +13,20 @@ public class RegistrationServiceImpl implements RegistrationService {
 	@Autowired
 	private RegistrationsRepository repo;
 
-
-//	public void saveCustomer(Customers customer) {
-//		repo.save(customer);
-//	}
-
-
 	public Iterable<Registration> findAllRegistrations() {
 		return repo.findAll();
 	}
 
-
 	public Optional<Registration> findRegistrationById(long id) {
 		return repo.findById(id);
+	}
+
+	public void saveRegistration(Registration registration) {
+		repo.save(registration);
+	}
+
+	public void deleteRegistrationById(long id) {
+		repo.deleteById(id);
 	}
 }
 

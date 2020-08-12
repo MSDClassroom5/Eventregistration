@@ -1,14 +1,21 @@
 package com.Eventregistration.api;
 
+import java.net.URI;
 import java.util.Optional;
 
 import org.apache.catalina.connector.Response;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.PutMapping;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
+import org.springframework.web.util.UriComponentsBuilder;
 
 import com.Eventregistration.domain.Registration;
 import com.Eventregistration.service.RegistrationService;
@@ -35,24 +42,33 @@ public class RegistrationAPI {
 		}
 	}
 	
-//	@PostMapping
-//	public ResponseEntity<?> addCustomer(@RequestBody Customers newCustomer, UriComponentsBuilder uri){
-//		if (newCustomer.getId() !=0 || newCustomer.getName() == null || newCustomer.getEmail() == null) {
-//			return ResponseEntity.badRequest().build();			
-//		}
-//		newCustomer = repo.save(newCustomer);
-//		URI location=ServletUriComponentsBuilder.fromCurrentRequest().path("/{id}").buildAndExpand(newCustomer.getId()).toUri();
-//		ResponseEntity<?> response=ResponseEntity.created(location).build();
-//		return response;
-//	}
-//
-//	@PutMapping("/{customerId}")
-//	public ResponseEntity<?> putCustomer(@RequestBody Customers newCustomer, @PathVariable("customerId") long customerId){
-//		if (newCustomer.getId() != customerId || newCustomer.getName() == null || newCustomer.getEmail() == null) {
-//			return ResponseEntity.badRequest().build();			
-//		}
-//		newCustomer = repo.save(newCustomer);
-//		return ResponseEntity.ok().build();
-//	}
+	@PostMapping
+	public ResponseEntity<?> addRegistration(@RequestBody Registration newRegistration, UriComponentsBuilder uri){
+		if (newRegistration.getId() !=0 || newRegistration.getCustomer_id() == 0 || newRegistration.getEvent_id() == 0 || newRegistration.getRegistration_date() == null) {
+			return ResponseEntity.badRequest().build();			
+		}
+		registrationService.saveRegistration(newRegistration);
+		URI location=ServletUriComponentsBuilder.fromCurrentRequest().path("/{id}").buildAndExpand(newRegistration.getId()).toUri();
+		ResponseEntity<?> response=ResponseEntity.created(location).build();
+		return response;
+	}
+
+	@PutMapping("/{registrationId}")
+	public ResponseEntity<?> putEvent(@RequestBody Registration newRegistration, @PathVariable("registrationId") long registrationId){
+		if (newRegistration.getId() != registrationId || newRegistration.getCustomer_id() == 0 || newRegistration.getEvent_id() == 0 || newRegistration.getRegistration_date() == null) {
+			return ResponseEntity.badRequest().build();			
+		}
+		registrationService.saveRegistration(newRegistration);
+		return ResponseEntity.ok().build();
+	}
+
+	@DeleteMapping("/{registrationId}")
+	public ResponseEntity<?> deleteEvent(@PathVariable("registrationId") long registrationId){
+		if (registrationId == 0) {
+			return ResponseEntity.badRequest().build();			
+		}
+		registrationService.deleteRegistrationById(registrationId);		
+		return ResponseEntity.ok().build();
+	}
 	
 }
