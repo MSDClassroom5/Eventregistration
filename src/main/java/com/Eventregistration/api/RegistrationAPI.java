@@ -3,7 +3,6 @@ package com.Eventregistration.api;
 import java.net.URI;
 import java.util.Optional;
 
-import org.apache.catalina.connector.Response;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.DeleteMapping;
@@ -44,7 +43,7 @@ public class RegistrationAPI {
 	
 	@PostMapping
 	public ResponseEntity<?> addRegistration(@RequestBody Registration newRegistration, UriComponentsBuilder uri){
-		if (newRegistration.getId() !=0 || newRegistration.getCustomer_id() == 0 || newRegistration.getEvent_id() == 0 || newRegistration.getRegistration_date() == null) {
+		if (newRegistration.getId() !=0 || newRegistration.getCustomer_id() == 0 || newRegistration.getEvent_id() == 0 || newRegistration.getRegistration_date() == null || newRegistration.getNotes() == null) {
 			return ResponseEntity.badRequest().build();			
 		}
 		registrationService.saveRegistration(newRegistration);
@@ -55,7 +54,7 @@ public class RegistrationAPI {
 
 	@PutMapping("/{registrationId}")
 	public ResponseEntity<?> putEvent(@RequestBody Registration newRegistration, @PathVariable("registrationId") long registrationId){
-		if (newRegistration.getId() != registrationId || newRegistration.getCustomer_id() == 0 || newRegistration.getEvent_id() == 0 || newRegistration.getRegistration_date() == null) {
+		if (newRegistration.getId() != registrationId || newRegistration.getCustomer_id() == 0 || newRegistration.getEvent_id() == 0 || newRegistration.getRegistration_date() == null || newRegistration.getNotes() == null) {
 			return ResponseEntity.badRequest().build();			
 		}
 		registrationService.saveRegistration(newRegistration);
