@@ -3,6 +3,7 @@ package com.Eventregistration.api;
 import java.net.URI;
 import java.util.Optional;
 
+import org.json.simple.JSONObject;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.DeleteMapping;
@@ -62,6 +63,23 @@ public class CustomerAPI {
 		return response;
 	}
 
+	@PostMapping("/register-user")
+	public ResponseEntity<?> registerCustomer(@RequestBody JSONObject userJsonObject){
+		
+		String userName = (String)userJsonObject.get("userName");
+		String password = (String)userJsonObject.get("password");
+		String email = (String)userJsonObject.get("email");
+		
+		if (userName == null || password == null || email == null) {
+			return ResponseEntity.badRequest().build();			
+		}
+		Customer newCustomer = new Customer(userName, password, email);
+
+		customerService.saveCustomer(newCustomer);
+		ResponseEntity<?> response=ResponseEntity.ok(Boolean.TRUE);
+		return response;
+	}
+	
 	@PutMapping("/{customerId}")
 	public ResponseEntity<?> putCustomer(@RequestBody Customer newCustomer, @PathVariable("customerId") long customerId){
 		if (newCustomer.getId() != customerId || newCustomer.getName() == null || newCustomer.getEmail() == null || newCustomer.getPassword() == null) {

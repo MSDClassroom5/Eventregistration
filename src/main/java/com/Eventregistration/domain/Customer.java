@@ -18,13 +18,15 @@ public class Customer {
 	private String password;
 	private String email;
 	
-//	public Customers(long id, String name, String password, String email) {
-//		super();
-//		this.id = id;
-//		this.name = name;
-//		this.password = password;
-//		this.email = email;
-//	}
+	public Customer() {
+		
+	}
+	
+	public Customer(String name, String password, String email) {
+		this.name = name;
+		this.password = password;
+		this.email = email;
+	}
 
 	public String getPassword() {
 		return password;
