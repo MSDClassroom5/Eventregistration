@@ -35,16 +35,17 @@ public class AuthFilter implements Filter {
 		HttpServletRequest req = (HttpServletRequest) request;
 		HttpServletResponse res = (HttpServletResponse) response;
 		String uri = req.getRequestURI();
-		if (uri.startsWith("/api")) {
+		if (uri.startsWith("/api/verifyuser")) {
 			// continue on to get-token endpoint
 			chain.doFilter(request, response);
 			return;
 		} else {
 			// check JWT token
-			String authheader = req.getHeader("authorization");
+			String authheader = req.getHeader("Authorization");
 			if (authheader != null && authheader.length() > 7 && authheader.startsWith("Bearer")) {
 				String jwt_token = authheader.substring(7, authheader.length());
 				if (jwtUtil.verifyToken(jwt_token)) {
+					chain.doFilter(request, response);
 					/*
 					 * After verifying the token it checks to make sure the scopes passed in the
 					 * token match the scope required for the api which appears as a property of the
