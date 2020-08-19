@@ -24,11 +24,11 @@ public class UserAPI {
 	@ResponseBody	
 	public boolean verifyUser(@RequestBody User user){
 				
-		if (user.getUsername() == null || user.getPassword() == null) {
+		if (user.getName() == null || user.getPassword() == null) {
 			return false;			
 		}
 		
-		Customer customer = customerService.findCustomerByName(user.getUsername());
+		Customer customer = customerService.findCustomerByName(user.getName());
 
 		if (customer != null) {
 		
