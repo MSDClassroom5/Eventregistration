@@ -61,7 +61,7 @@ public class CustomerAPI {
 		ResponseEntity<?> response=ResponseEntity.created(location).build();
 		return response;
 	}
-
+	
 	@PutMapping("/{customerId}")
 	public ResponseEntity<?> putCustomer(@RequestBody Customer newCustomer, @PathVariable("customerId") long customerId){
 		if (newCustomer.getId() != customerId || newCustomer.getName() == null || newCustomer.getEmail() == null || newCustomer.getPassword() == null) {
