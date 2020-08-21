@@ -34,7 +34,7 @@ public class AuthFilter implements Filter {
 		HttpServletRequest req = (HttpServletRequest) request;
 		HttpServletResponse res = (HttpServletResponse) response;
 		String uri = req.getRequestURI();
-		if (uri.startsWith("/api/verifyuser") || uri.startsWith("/api/customers")) {
+		if (uri.startsWith("/api/verifyuser")) {
 			// continue on to get-token endpoint
 			chain.doFilter(request, response);
 			return;
