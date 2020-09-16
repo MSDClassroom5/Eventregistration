@@ -28,6 +28,7 @@ public class CustomerAPI {
 	
 	@GetMapping
 	public Iterable<Customer> getAll() {
+		System.out.println("MSD Project group 5::Calling Customers.getAll(): ");
 		return customerService.findAllCustomers();
 	}
 
@@ -35,6 +36,7 @@ public class CustomerAPI {
 	public ResponseEntity<Customer> getCustomerById(@PathVariable("customerId") long id){
 		Optional<Customer> customer = customerService.findCustomerById(id);
 		if (customer.isPresent()) {
+			System.out.println("MSD Project group 5::Calling Customers::getCustomerById(): " + id);
 			return ResponseEntity.ok(customer.get());
 		} else {
 			return ResponseEntity.notFound().build();
