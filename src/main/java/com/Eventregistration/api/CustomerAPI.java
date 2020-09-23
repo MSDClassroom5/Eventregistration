@@ -58,6 +58,7 @@ public class CustomerAPI {
 		if (newCustomer.getId() !=0 || newCustomer.getName() == null || newCustomer.getEmail() == null || newCustomer.getPassword() == null) {
 			return ResponseEntity.badRequest().build();			
 		}
+		System.out.println("MSD Project group 5::Calling Customers.addCustomer(): ");		
 		customerService.saveCustomer(newCustomer);
 		URI location=ServletUriComponentsBuilder.fromCurrentRequest().path("/{id}").buildAndExpand(newCustomer.getId()).toUri();
 		ResponseEntity<?> response=ResponseEntity.created(location).build();
@@ -69,6 +70,8 @@ public class CustomerAPI {
 		if (newCustomer.getId() != customerId || newCustomer.getName() == null || newCustomer.getEmail() == null || newCustomer.getPassword() == null) {
 			return ResponseEntity.badRequest().build();			
 		}
+		System.out.println("MSD Project group 5::Calling Customers.putCustomer(): ");		
+		
 		customerService.saveCustomer(newCustomer);		
 		return ResponseEntity.ok().build();
 	}
@@ -78,8 +81,8 @@ public class CustomerAPI {
 		if (customerId == 0) {
 			return ResponseEntity.badRequest().build();			
 		}
+		System.out.println("MSD Project group 5::Calling Customers.deleteCustomer(): ");				
 		customerService.deleteCustomerById(customerId);		
 		return ResponseEntity.ok().build();
-	}
-	
+	}	
 }

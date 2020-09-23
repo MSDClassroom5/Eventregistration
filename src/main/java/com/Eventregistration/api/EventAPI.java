@@ -28,6 +28,7 @@ public class EventAPI {
 	
 	@GetMapping
 	public Iterable<Event> getAll() {
+		System.out.println("MSD Project group 5::Calling events.getAll(): ");						
 		return eventService.findAllEvents();
 	}
 
@@ -42,6 +43,8 @@ public class EventAPI {
 		if (newEvent.getId() !=0 || newEvent.getCode() == null || newEvent.getTitle() == null || newEvent.getDescription() == null) {
 			return ResponseEntity.badRequest().build();			
 		}
+		System.out.println("MSD Project group 5::Calling events.addEvent(): ");				
+		
 		eventService.saveEvent(newEvent);
 		URI location=ServletUriComponentsBuilder.fromCurrentRequest().path("/{id}").buildAndExpand(newEvent.getId()).toUri();
 		ResponseEntity<?> response=ResponseEntity.created(location).build();
@@ -53,6 +56,8 @@ public class EventAPI {
 		if (newEvent.getId() != eventId || newEvent.getCode() == null || newEvent.getTitle() == null || newEvent.getDescription() == null) {
 			return ResponseEntity.badRequest().build();			
 		}
+		System.out.println("MSD Project group 5::Calling events.putEvent(): ");				
+		
 		eventService.saveEvent(newEvent);
 		return ResponseEntity.ok().build();
 	}
@@ -62,7 +67,9 @@ public class EventAPI {
 		if (eventId == 0) {
 			return ResponseEntity.badRequest().build();			
 		}
-		eventService.deleteEventById(eventId);		
+		eventService.deleteEventById(eventId);
+		System.out.println("MSD Project group 5::Calling events.deleteEvent(): ");				
+		
 		return ResponseEntity.ok().build();
 	}
 	

@@ -28,6 +28,7 @@ public class RegistrationAPI {
 	
 	@GetMapping
 	public Iterable<Registration> getAll() {
+		System.out.println("MSD Project group 5::Calling registrations.getAll(): ");						
 		return registrationService.findAllRegistrations();
 	}
 
@@ -46,6 +47,8 @@ public class RegistrationAPI {
 		if (newRegistration.getId() !=0 || newRegistration.getCustomer_id() == 0 || newRegistration.getEvent_id() == 0 || newRegistration.getRegistration_date() == null || newRegistration.getNotes() == null) {
 			return ResponseEntity.badRequest().build();			
 		}
+		System.out.println("MSD Project group 5::Calling registrations.addRegistration(): ");						
+		
 		registrationService.saveRegistration(newRegistration);
 		URI location=ServletUriComponentsBuilder.fromCurrentRequest().path("/{id}").buildAndExpand(newRegistration.getId()).toUri();
 		ResponseEntity<?> response=ResponseEntity.created(location).build();
@@ -57,6 +60,8 @@ public class RegistrationAPI {
 		if (newRegistration.getId() != registrationId || newRegistration.getCustomer_id() == 0 || newRegistration.getEvent_id() == 0 || newRegistration.getRegistration_date() == null || newRegistration.getNotes() == null) {
 			return ResponseEntity.badRequest().build();			
 		}
+		System.out.println("MSD Project group 5::Calling registrations.putEvent(): ");						
+		
 		registrationService.saveRegistration(newRegistration);
 		return ResponseEntity.ok().build();
 	}
@@ -66,6 +71,8 @@ public class RegistrationAPI {
 		if (registrationId == 0) {
 			return ResponseEntity.badRequest().build();			
 		}
+		System.out.println("MSD Project group 5::Calling registrations.deleteEvent(): ");						
+		
 		registrationService.deleteRegistrationById(registrationId);		
 		return ResponseEntity.ok().build();
 	}
