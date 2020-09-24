@@ -19,9 +19,15 @@ import org.springframework.web.util.UriComponentsBuilder;
 import com.Eventregistration.domain.Customer;
 import com.Eventregistration.service.CustomerService;
 
+import io.opentracing.Span;
+import io.opentracing.Tracer;
+
 @RestController
 @RequestMapping("/customers")
 public class CustomerAPI {
+	
+    @Autowired
+    private Tracer tracer;
 	
 	@Autowired
 	CustomerService customerService;
@@ -29,7 +35,13 @@ public class CustomerAPI {
 	@GetMapping
 	public Iterable<Customer> getAll() {
 		System.out.println("MSD Project group 5::Calling Customers.getAll(): ");
-		return customerService.findAllCustomers();
+		
+    	Span span = tracer.buildSpan("get customers").start();
+    	span.setTag("http.status_code",201);
+    	Iterable<Customer> data = customerService.findAllCustomers();
+    	span.finish();
+    	return data;		
+		//return customerService.findAllCustomers();
 	}
 
 	@GetMapping("/{customerId}")
@@ -70,7 +82,7 @@ public class CustomerAPI {
 		if (newCustomer.getId() != customerId || newCustomer.getName() == null || newCustomer.getEmail() == null || newCustomer.getPassword() == null) {
 			return ResponseEntity.badRequest().build();			
 		}
-		System.out.println("MSD Project group 5::Calling Customers.putCustomer(): ");		
+		System.out.println("MSD Project group 5::Calling Customers.putCustomer(): " + customerId);		
 		
 		customerService.saveCustomer(newCustomer);		
 		return ResponseEntity.ok().build();
@@ -81,7 +93,7 @@ public class CustomerAPI {
 		if (customerId == 0) {
 			return ResponseEntity.badRequest().build();			
 		}
-		System.out.println("MSD Project group 5::Calling Customers.deleteCustomer(): ");				
+		System.out.println("MSD Project group 5::Calling Customers.deleteCustomer(): " + customerId);				
 		customerService.deleteCustomerById(customerId);		
 		return ResponseEntity.ok().build();
 	}	

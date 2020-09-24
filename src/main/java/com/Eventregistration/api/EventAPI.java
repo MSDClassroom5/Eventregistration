@@ -56,7 +56,7 @@ public class EventAPI {
 		if (newEvent.getId() != eventId || newEvent.getCode() == null || newEvent.getTitle() == null || newEvent.getDescription() == null) {
 			return ResponseEntity.badRequest().build();			
 		}
-		System.out.println("MSD Project group 5::Calling events.putEvent(): ");				
+		System.out.println("MSD Project group 5::Calling events.putEvent(): " + eventId);				
 		
 		eventService.saveEvent(newEvent);
 		return ResponseEntity.ok().build();
@@ -68,7 +68,7 @@ public class EventAPI {
 			return ResponseEntity.badRequest().build();			
 		}
 		eventService.deleteEventById(eventId);
-		System.out.println("MSD Project group 5::Calling events.deleteEvent(): ");				
+		System.out.println("MSD Project group 5::Calling events.deleteEvent(): " + eventId);				
 		
 		return ResponseEntity.ok().build();
 	}

@@ -60,7 +60,7 @@ public class RegistrationAPI {
 		if (newRegistration.getId() != registrationId || newRegistration.getCustomer_id() == 0 || newRegistration.getEvent_id() == 0 || newRegistration.getRegistration_date() == null || newRegistration.getNotes() == null) {
 			return ResponseEntity.badRequest().build();			
 		}
-		System.out.println("MSD Project group 5::Calling registrations.putEvent(): ");						
+		System.out.println("MSD Project group 5::Calling registrations.putEvent(): " + registrationId);						
 		
 		registrationService.saveRegistration(newRegistration);
 		return ResponseEntity.ok().build();
@@ -71,7 +71,7 @@ public class RegistrationAPI {
 		if (registrationId == 0) {
 			return ResponseEntity.badRequest().build();			
 		}
-		System.out.println("MSD Project group 5::Calling registrations.deleteEvent(): ");						
+		System.out.println("MSD Project group 5::Calling registrations.deleteEvent(): " + registrationId);						
 		
 		registrationService.deleteRegistrationById(registrationId);		
 		return ResponseEntity.ok().build();
