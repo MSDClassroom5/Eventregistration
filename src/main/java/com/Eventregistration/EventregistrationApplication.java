@@ -20,7 +20,7 @@ public class EventregistrationApplication {
 				Configuration .SamplerConfiguration.fromEnv().withType("const").withParam(1);
 		Configuration.ReporterConfiguration reporterConfig =
 		Configuration.ReporterConfiguration.fromEnv().withLogSpans(true);
-		Configuration config = new Configuration("jaeger tutorial").withSampler(samplerConfig).withReporter(reporterConfig);
+		Configuration config = new Configuration("data-api").withSampler(samplerConfig).withReporter(reporterConfig);
 		return config.getTracer();			
 	}
 
