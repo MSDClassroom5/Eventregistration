@@ -22,7 +22,7 @@ node {
     }
     
     stage ("Run Docker container instance - DataApi"){
-        sh "docker run -d --name project-data -p 8080:8080 project-data:v1.0"
+        sh "docker run -d --name project-data1 -p 9000:9000 project-data:v1.0"
      }
     
     stage('User Acceptance Test - DataApi') {
