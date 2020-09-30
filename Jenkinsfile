@@ -1,5 +1,9 @@
 node {
     
+    stage ("Checkout DataApi"){
+        git url: '/home/osboxes/project/Eventregistration'
+    }
+	
     stage ("Gradle Build - DataApi") {
         sh 'gradle clean build'
     }
