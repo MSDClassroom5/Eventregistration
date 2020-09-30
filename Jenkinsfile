@@ -1,8 +1,4 @@
 node {
-
-    stage ("Checkout DataApi"){
-        git url: '/home/osboxes/Desktop/demomccproject/project-data-api'
-    }
     
     stage ("Gradle Build - DataApi") {
         sh 'gradle clean build'
@@ -13,16 +9,16 @@ node {
     }
     
     stage ("Containerize the app-docker build - DataApi") {
-        sh 'docker build -t event-data:v1.0 .'
+        sh 'docker build -t project-data:v1.0 .'
     }
     
     stage ("Inspect the docker image - DataApi"){
-        sh "docker images event-data:v1.0"
-        sh "docker inspect event-data:v1.0"
+        sh "docker images project-data:v1.0"
+        sh "docker inspect project-data:v1.0"
     }
     
     stage ("Run Docker container instance - DataApi"){
-        sh "docker run -d --name event-data1 -p 8080:8080 event-data:v1.0"
+        sh "docker run -d --name project-data -p 8080:8080 project-data:v1.0"
      }
     
     stage('User Acceptance Test - DataApi') {
@@ -33,8 +29,8 @@ node {
 	
 	  if(response=="Yes") {
 	    stage('Deploy to Kubenetes cluster - DataApi') {
-	      sh "kubectl create deployment event-data --image=event-data:v1.0"
-	      sh "kubectl expose deployment event-data --type=LoadBalancer --port=8080"
+	      sh "kubectl create deployment project-data --image=event-data:v1.0"
+	      sh "kubectl expose deployment project-data --type=LoadBalancer --port=8080"
 	    }
 	  }
     }
